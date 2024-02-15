@@ -30,16 +30,35 @@ for x in seperated:
     for y in x:
         seper.append(y.split(' '))
 
-print(finalized)
+'''
+same = [['A','B'],['G','L'],['J','K']]
+seper = [['D','F'],['D','G']]
+finalized = [['A C G'],['B D F'],['E H I'],['J K L']]
+'''
+violations = 0
+same_violated = False
+seper_violated = False
 
 for x in finalized:
-    for y in same:
-        temp = x.split(' ')
-        print(temp)
-        if y[0] and y[1] not in x.split(' '):
-            violations += 1
-    for z in seper:
-        if y[0] and y[1] in x.split(' '):
-            violations += 1
+    temp = x[0].split(' ')
+    
+for y in same:
+    for s in finalized:
+        if y[0] not in temp:
+            if y[1] not in temp:
+            
+                same_violated = True
+    if same_violated == True:
+        violations += 1
+
+for z in seper:
+    for g in finalized:
+        if z[0] in temp:
+            if z[1] in temp:
+                seper_violated = True
+    
+    if seper_violated == True:
+        violations +=1
+
 
 print(violations)
