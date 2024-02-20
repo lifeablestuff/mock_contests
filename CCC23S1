@@ -1,6 +1,44 @@
 import sys
-columns = int(sys.stdin.read().strip('/n'))
+columns = int(sys.stdin.readline().strip('\n'))
 triangles = []
-for x in range(1):
-    triangles.append(sys.stdin.read().split().strip())
+total_paper = 0
+for x in range(2):
+    triangles.append(sys.stdin.readline().strip('\n').split(' '))
+
+#search
+'''
+columns = 5
+triangles = [['1','0','1','0','1'],['0','0','0','0','0']]
+'''
+def search(index,column):
+    saved_paper = 0
+    try:
+        
+        if index > 0:
+            if triangles[column][index-1] == '1':
+                saved_paper += 1
+        if index+1 != columns:
+            
+            if triangles[column][index+1] == '1':
+                saved_paper += 1
+        if column == 0:
+            if triangles[column+1][index] == '1':
+                if (index+1)%2 != 0:
+                    saved_paper += 1
+        if column == 1:
+            if triangles[column-1][index] == '1':
+                if (index+1)%2 != 0:
+                    saved_paper += 1
+    except:
+        0
+    return saved_paper
     
+for x in range(len(triangles)):
+    for y in range(len(triangles[x])):
+        if triangles[x][y] == '1':
+            a = 0
+            a = search(y,x)
+            total_paper += 3-a
+
+print(total_paper)
+            
