@@ -1,0 +1,20 @@
+import sys
+
+num_mountain = int(sys.stdin.readline())
+mountains = sys.stdin.readline().strip('\n').split(' ')
+lowest = []
+
+def get_lowest(index):
+    another_temp = []
+    temp = []
+    count = 0
+    for x in range(len(mountains)):
+        temp = mountains[x:(num_mountain-x)]
+        for y in range(len(temp)):
+            count += abs(int(mountains[y])+int(mountains[x-y]))
+        
+        another_temp.append(count)
+        count = 0
+    another_temp.sort()
+    return int(another_temp[0])
+            
